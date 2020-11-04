@@ -9,6 +9,7 @@ import { AddToPhotos, ExitToApp } from '@material-ui/icons';
 
 import styles from './App.module.css';
 import { db, auth } from './firebase/config';
+import TaskItem from './TaskItem';
 
 const useStyles = makeStyles({
         field: {
@@ -76,8 +77,10 @@ const App: React.FC = (props: any) => {
             <button className={styles.app__icon} disabled={!input} onClick={newTask}>
                 <AddToPhotos />
             </button>
-            <List className={styles.app__icon}>
-                {tasks}
+            <List className={classes.list}>
+                {tasks.map(task => (
+                    <TaskItem key={task.id} id={task.id} title={task.title} />
+                ))}
             </List>
         </div>
     )
